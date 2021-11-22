@@ -18,10 +18,7 @@ contract WavePortal {
 
     Wave[] waves;
 
-    /*
-     * This is an address => uint mapping, meaning I can associate an address with a number!
-     * In this case, I'll be storing the address with the last time the user waved at us.
-     */
+
     mapping(address => uint256) public lastWavedAt;
 
     constructor() payable {
@@ -33,9 +30,7 @@ contract WavePortal {
     }
 
     function wave(string memory _message) public {
-        /*
-         * We need to make sure the current timestamp is at least 15-minutes bigger than the last timestamp we stored
-         */
+
         require(
             lastWavedAt[msg.sender] + 30 seconds < block.timestamp,
             "Wait 30s"
